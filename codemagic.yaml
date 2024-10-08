@@ -6,7 +6,7 @@ workflows:
       cocoapods: default
       vars:
           XCODE_PROJECT: "GameON.xcodeproj"
-          XCODE_WORKSPACE: "GameON-Modularization.xcworkspace"
+          XCODE_WORKSPACE: "./GameON/GameON-Modularization.xcworkspace"
           XCODE_SCHEME: "GameON"  # or any other valid scheme you want to use
     scripts:
       - name: Run tests
