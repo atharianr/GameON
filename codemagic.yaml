@@ -1,24 +1,25 @@
 workflows:
-  ios-project-debug: # workflow ID
-    name: iOS debug # workflow name
+  ios-project-debug:
+    name: iOS debug
     environment:
       xcode: latest
       cocoapods: default
       vars:
-          XCODE_WORKSPACE: "GameON/GameON-Modularization.xcworkspace" # Workspace name
-          XCODE_SCHEME: "GameON" # Scheme you want to build (should be your app's scheme)
+          XCODE_PROJECT: "GameON.xcodeproj"
+          XCODE_WORKSPACE: "GameON-Modularization.xcworkspace"
+          XCODE_SCHEME: "GameON"  # or any other valid scheme you want to use
     scripts:
       - name: Run tests
         script: |
           xcodebuild \
-          -workspace "$XCODE_WORKSPACE" \  # Use workspace instead of project
+          -workspace "$XCODE_WORKSPACE" \
           -scheme "$XCODE_SCHEME" \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.0' \
           clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
       - name: Build debug app
         script: |
-          xcodebuild build -workspace "$XCODE_WORKSPACE" \  # Use workspace instead of project
+          xcodebuild build -workspace "$XCODE_WORKSPACE" \
           -scheme "$XCODE_SCHEME" \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
     artifacts:
@@ -26,4 +27,4 @@ workflows:
     publishing:
       email:
         recipients:
-          - atharianrahmadani@gmail.com # Email for build notifications
+          - atharianrahmadani@gmail.com
