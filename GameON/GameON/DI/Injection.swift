@@ -17,7 +17,7 @@ struct APIKey {
         guard let filePath = Bundle.main.path(forResource: "GameON-Info", ofType: "plist") else {
             fatalError("Couldn't find file 'GameON-Info.plist'.")
         }
-        
+
         let plist = NSDictionary(contentsOfFile: filePath)
         guard let value = plist?.object(forKey: "API_KEY") as? String else {
             fatalError("Couldn't find key 'API_KEY' in 'GameON-Info.plist'.")
@@ -27,17 +27,17 @@ struct APIKey {
 }
 
 final class Injection: NSObject {
-    
+
     private func provideRealmDatabase() -> Realm? {
         let config = Realm.Configuration(
             schemaVersion: 1 // Increment the schema version if change entity
         )
-        
+
         Realm.Configuration.defaultConfiguration = config
-        
+
         return try? Realm()
     }
-    
+
     func provideGames<U: UseCase>() -> U where U.Request == Any, U.Response == [GameDomainModel] {
         let endpoint = Endpoints.Gets.games(apiKey: APIKey.apiKey)
         let locale = GetGamesLocaleDataSource(realm: provideRealmDatabase()!)
@@ -47,16 +47,16 @@ final class Injection: NSObject {
             localeDataSource: locale,
             remoteDataSource: remote,
             mapper: mapper)
-        
+
         let interactor = Interactor(repository: repository)
-        
+
         guard let useCase = interactor as? U else {
             fatalError("Failed to cast Interactor to \(U.self)")
         }
-        
+
         return useCase
     }
-    
+
     func provideSearchGames<U: UseCase>(query: String) -> U where U.Request == Any, U.Response == [GameDomainModel] {
         let endpoint = Endpoints.Gets.searchGames(apiKey: APIKey.apiKey, query: query)
         let locale = GetGamesLocaleDataSource(realm: provideRealmDatabase()!)
@@ -66,16 +66,16 @@ final class Injection: NSObject {
             localeDataSource: locale,
             remoteDataSource: remote,
             mapper: mapper)
-        
+
         let interactor = Interactor(repository: repository)
-        
+
         guard let useCase = interactor as? U else {
             fatalError("Failed to cast Interactor to \(U.self)")
         }
-        
+
         return useCase
     }
-    
+
     func provideGameDetail<U: UseCase>(id: Int) -> U where U.Request == Any, U.Response == GameDetailDomainModel {
         let endpoint = Endpoints.Gets.details(apiKey: APIKey.apiKey, id: id)
         let locale = GetGameDetailLocaleDataSource(realm: provideRealmDatabase()!)
@@ -85,16 +85,16 @@ final class Injection: NSObject {
             localeDataSource: locale,
             remoteDataSource: remote,
             mapper: mapper)
-        
+
         let interactor = Interactor(repository: repository)
-        
+
         guard let useCase = interactor as? U else {
             fatalError("Failed to cast Interactor to \(U.self)")
         }
-        
+
         return useCase
     }
-    
+
     func provideFavorites<U: UseCase>() -> U where U.Request == Any, U.Response == [FavoriteDomainModel] {
         let locale = FavoriteLocaleDataSource(realm: provideRealmDatabase()!)
         let remote = FavoriteRemoteDataSource()
@@ -103,16 +103,16 @@ final class Injection: NSObject {
             localeDataSource: locale,
             remoteDataSource: remote,
             mapper: mapper)
-        
+
         let interactor = Interactor(repository: repository)
-        
+
         guard let useCase = interactor as? U else {
             fatalError("Failed to cast Interactor to \(U.self)")
         }
-        
+
         return useCase
     }
-    
+
     func provideSetFavorite<U: UseCase>() -> U where U.Request == Any, U.Response == Bool {
         let locale = FavoriteLocaleDataSource(realm: provideRealmDatabase()!)
         let remote = FavoriteRemoteDataSource()
@@ -121,14 +121,14 @@ final class Injection: NSObject {
             localeDataSource: locale,
             remoteDataSource: remote,
             mapper: mapper)
-        
+
         let interactor = Interactor(repository: repository)
-        
+
         guard let useCase = interactor as? U else {
             fatalError("Failed to cast Interactor to \(U.self)")
         }
-        
+
         return useCase
     }
-    
+
 }

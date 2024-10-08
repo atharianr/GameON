@@ -36,7 +36,7 @@ class FavoriteViewController: UIViewController {
         super.viewWillAppear(animated)
         getAllFavoriteGames()
     }
-    
+
     private func getAllFavoriteGames() {
         let favoriteUseCase: Interactor<
             Any,
@@ -48,7 +48,7 @@ class FavoriteViewController: UIViewController {
             >
         > = Injection.init().provideFavorites()
         let presenter = GetListPresenter(useCase: favoriteUseCase)
-        
+
         // Observe gameDetail changes
         presenter.$list
             .sink { [weak self] favoriteGames in
@@ -71,7 +71,7 @@ class FavoriteViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         // Observe loadingState changes
         presenter.$isLoading
             .sink { [weak self] isLoading in
@@ -82,7 +82,7 @@ class FavoriteViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         // Observe errorMessage changes
         presenter.$errorMessage
             .sink { [weak self] errorMessage in
@@ -94,7 +94,7 @@ class FavoriteViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         presenter.getList(request: nil)
     }
 

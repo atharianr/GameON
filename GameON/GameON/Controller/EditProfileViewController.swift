@@ -22,7 +22,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var organizationTextField: UITextField!
 
     private let imagePicker = UIImagePickerController()
-    
+
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -107,7 +107,7 @@ class EditProfileViewController: UIViewController {
 
         textField.rightView = button
     }
-    
+
     func setupCombine() {
         // Name
         let nameStream = nameTextField.textPublisher

@@ -18,7 +18,7 @@ public struct GameDetailResponse: Codable {
     let publishers: [Developer]?
     let esrbRating: EsrbRating?
     let descriptionRaw: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, released
         case backgroundImage = "background_image"

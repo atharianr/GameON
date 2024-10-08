@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public struct ProfileDummyData {
-    
+
     public static func addDummyData(completion: @escaping () -> Void) {
         ProfileModel.name = "Atharian Rahmadani"
         ProfileModel.occupation = "Android Developer"

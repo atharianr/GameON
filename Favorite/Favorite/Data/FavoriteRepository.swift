@@ -17,17 +17,16 @@ public struct FavoriteRepository<
                     RemoteDataSource.Response == Any,
                     Transformer.Response == Any,
                     Transformer.Entity == FavoriteModuleEntity,
-                    Transformer.Domain == FavoriteDomainModel
-{
-    
+                    Transformer.Domain == FavoriteDomainModel {
+
     public typealias Request = Any
-    
+
     public typealias Response = [FavoriteDomainModel]
-    
+
     private let _localeDataSource: GameLocaleDataSource
     private let _remoteDataSource: RemoteDataSource
     private let _mapper: Transformer
-    
+
     public init(
         localeDataSource: GameLocaleDataSource,
         remoteDataSource: RemoteDataSource,
@@ -37,11 +36,11 @@ public struct FavoriteRepository<
         _remoteDataSource = remoteDataSource
         _mapper = mapper
     }
-    
+
     public func execute(request: Request?) -> AnyPublisher<[FavoriteDomainModel], any Error> {
         return getFavoriteList()
     }
-    
+
     private func getFavoriteList() -> AnyPublisher<[FavoriteDomainModel], any Error> {
         return _localeDataSource.getList(request: nil)
             .map({ entities in
@@ -55,5 +54,5 @@ public struct FavoriteRepository<
 //            .map { _mapper.transformEntityToDomain(entity: $0) }
             .eraseToAnyPublisher()
     }
-    
+
 }

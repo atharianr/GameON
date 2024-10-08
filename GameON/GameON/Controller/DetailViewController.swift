@@ -47,7 +47,7 @@ class DetailViewController: UIViewController {
     private var cancellables: Set<AnyCancellable> = []
 
     private var isFavorite = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -81,11 +81,11 @@ class DetailViewController: UIViewController {
             >
         > = Injection.init().provideSetFavorite()
         let presenter = GetDataPresenter(useCase: setFavoriteUseCase)
-        
+
         // Observe data changes
         presenter.$data
             .sink { [] isSuccess in
-                if (isSuccess ?? false) {
+                if isSuccess ?? false {
                     debugPrint("SUCCESS ADD TO FAVORITE")
                 }
             }
@@ -96,11 +96,11 @@ class DetailViewController: UIViewController {
             .sink { [weak self] errorMessage in
                 guard let self = self else { return }
                 if !errorMessage.isEmpty {
-                    AlertUtils.showErrorAlert(on: self, errorMessage: errorMessage)  {}
+                    AlertUtils.showErrorAlert(on: self, errorMessage: errorMessage) {}
                 }
             }
             .store(in: &cancellables)
-        
+
         if let game = gameModel {
             let favoriteModel = FavoriteDomainModel(
                 id: game.id,
@@ -124,11 +124,11 @@ class DetailViewController: UIViewController {
             >
         > = Injection.init().provideSetFavorite()
         let presenter = GetDataPresenter(useCase: setFavoriteUseCase)
-        
+
         // Observe data changes
         presenter.$data
             .sink { [] isSuccess in
-                if (isSuccess ?? false) {
+                if isSuccess ?? false {
                     debugPrint("SUCCESS DELETE FROM FAVORITE")
                 }
             }
@@ -139,11 +139,11 @@ class DetailViewController: UIViewController {
             .sink { [weak self] errorMessage in
                 guard let self = self else { return }
                 if !errorMessage.isEmpty {
-                    AlertUtils.showErrorAlert(on: self, errorMessage: errorMessage)  {}
+                    AlertUtils.showErrorAlert(on: self, errorMessage: errorMessage) {}
                 }
             }
             .store(in: &cancellables)
-        
+
         if let game = gameModel {
             let favoriteModel = FavoriteDomainModel(
                 id: game.id,
@@ -167,7 +167,7 @@ class DetailViewController: UIViewController {
             >
         > = Injection.init().provideSetFavorite()
         let presenter = GetDataPresenter(useCase: favoriteUseCase)
-        
+
         // Observe data changes
         presenter.$data
             .sink { [weak self] isFavoriteResult in
@@ -177,7 +177,7 @@ class DetailViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         // Observe errorMessage changes
         presenter.$errorMessage
             .sink { [weak self] errorMessage in
@@ -187,7 +187,7 @@ class DetailViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         if let game = gameModel {
             let favoriteModel = FavoriteDomainModel(
                 id: game.id,
@@ -199,7 +199,7 @@ class DetailViewController: UIViewController {
             presenter.getData(request: ["isExist": favoriteModel])
         }
     }
-    
+
     private func getGameDetail(id: Int) {
         let gamesUseCase: Interactor<
             Any,
@@ -211,14 +211,14 @@ class DetailViewController: UIViewController {
             >
         > = Injection.init().provideGameDetail(id: id)
         let presenter = GetDataPresenter(useCase: gamesUseCase)
-        
+
         // Observe gameDetail changes
         presenter.$data
             .sink { [weak self] game in
                 self?.bindData(gameDetailModel: game)
             }
             .store(in: &cancellables)
-        
+
         // Observe loadingState changes
         presenter.$isLoading
             .sink { [weak self] isLoading in
@@ -231,7 +231,7 @@ class DetailViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         // Observe errorMessage changes
         presenter.$errorMessage
             .sink { [weak self] errorMessage in
@@ -243,7 +243,7 @@ class DetailViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         presenter.getData(request: id)
     }
 

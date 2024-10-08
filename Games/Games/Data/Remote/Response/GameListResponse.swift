@@ -18,7 +18,7 @@ public struct Result: Codable {
     let name, released: String?
     let backgroundImage: String?
     let rating: Double?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, released
         case backgroundImage = "background_image"

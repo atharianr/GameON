@@ -9,22 +9,22 @@ import Foundation
 import GameON_Core
 
 public struct GameDetailTransformer: Mapper {
-    
+
     public typealias Response = GameDetailResponse
-    
+
     public typealias Entity = GameDetailModuleEntity?
-    
+
     public typealias Domain = GameDetailDomainModel
-    
+
     public init() {}
-    
+
     public func transformResponseToEntity(response: GameDetailResponse) -> GameDetailModuleEntity? {
         let newGame = GameDetailModuleEntity()
         let publisher = response.publishers?.map { $0.name ?? "" }.joined(separator: ", ") ?? "-"
         let platforms = response.platforms?.map {
             $0.platform?.name ?? ""
         }.joined(separator: ", ") ?? "-"
-        
+
         newGame.id = response.id ?? 0
         newGame.title = response.name ?? "Unknown"
         newGame.rating = response.rating ?? 0.0
@@ -37,10 +37,10 @@ public struct GameDetailTransformer: Mapper {
         newGame.publisher = publisher
         newGame.platform = platforms
         newGame.desc = response.descriptionRaw ?? "-"
-        
+
         return newGame
     }
-    
+
     public func transformEntityToDomain(entity: GameDetailModuleEntity?) -> GameDetailDomainModel {
         return GameDetailDomainModel(
             id: entity?.id ?? 0,
@@ -55,13 +55,13 @@ public struct GameDetailTransformer: Mapper {
             description: entity?.desc ?? ""
         )
     }
-    
+
     public func transformResponseToDomain(response: GameDetailResponse) -> GameDetailDomainModel {
         let publisher = response.publishers?.map { $0.name ?? "" }.joined(separator: ", ") ?? "-"
         let platforms = response.platforms?.map {
             $0.platform?.name ?? ""
         }.joined(separator: ", ") ?? "-"
-        
+
         return GameDetailDomainModel(
             id: response.id ?? 0,
             title: response.name ?? "Unknown",
@@ -77,9 +77,9 @@ public struct GameDetailTransformer: Mapper {
             description: response.descriptionRaw ?? "-"
         )
     }
-    
+
     public func transformDomainToEntity(domain: GameDetailDomainModel) -> GameDetailModuleEntity? {
         fatalError()
     }
-    
+
 }

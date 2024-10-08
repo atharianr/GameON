@@ -17,17 +17,16 @@ public struct GetGamesRepository<
                     RemoteDataSource.Response == GameListResponse,
                     Transformer.Response == GameListResponse,
                     Transformer.Entity == [GameModuleEntity],
-                    Transformer.Domain == [GameDomainModel]
-{
-    
+                    Transformer.Domain == [GameDomainModel] {
+
     public typealias Request = Any
-    
+
     public typealias Response = [GameDomainModel]
-    
+
     private let _localeDataSource: GameLocaleDataSource
     private let _remoteDataSource: RemoteDataSource
     private let _mapper: Transformer
-    
+
     public init(
         localeDataSource: GameLocaleDataSource,
         remoteDataSource: RemoteDataSource,
@@ -37,7 +36,7 @@ public struct GetGamesRepository<
         _remoteDataSource = remoteDataSource
         _mapper = mapper
     }
-    
+
     public func execute(request: Request?) -> AnyPublisher<[GameDomainModel], any Error> {
         let queryRequest = (request as? String) ?? ""
         if queryRequest.isEmpty {
@@ -46,7 +45,7 @@ public struct GetGamesRepository<
             return getSearchGameList(query: queryRequest)
         }
     }
-    
+
     private func getGameList() -> AnyPublisher<[GameDomainModel], any Error> {
         return _localeDataSource.getList(request: nil)
             .flatMap { result -> AnyPublisher<[GameDomainModel], Error> in
@@ -67,11 +66,11 @@ public struct GetGamesRepository<
                 }
             }.eraseToAnyPublisher()
     }
-    
+
     private func getSearchGameList(query: String) -> AnyPublisher<[GameDomainModel], any Error> {
         return _remoteDataSource.execute(request: nil)
             .map { _mapper.transformResponseToDomain(response: $0) }
             .eraseToAnyPublisher()
     }
-    
+
 }

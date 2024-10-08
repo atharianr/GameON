@@ -17,17 +17,16 @@ public struct SetFavoriteRepository<
                     RemoteDataSource.Response == Any,
                     Transformer.Response == Any,
                     Transformer.Entity == FavoriteModuleEntity,
-                    Transformer.Domain == FavoriteDomainModel
-{
-    
+                    Transformer.Domain == FavoriteDomainModel {
+
     public typealias Request = Any
-    
+
     public typealias Response = Bool
-    
+
     private let _localeDataSource: GameLocaleDataSource
     private let _remoteDataSource: RemoteDataSource
     private let _mapper: Transformer
-    
+
     public init(
         localeDataSource: GameLocaleDataSource,
         remoteDataSource: RemoteDataSource,
@@ -37,7 +36,7 @@ public struct SetFavoriteRepository<
         _remoteDataSource = remoteDataSource
         _mapper = mapper
     }
-    
+
     public func execute(request: Request?) -> AnyPublisher<Bool, any Error> {
         if let request = request as? [String: FavoriteDomainModel] {
             switch request.keys.first {
@@ -52,20 +51,20 @@ public struct SetFavoriteRepository<
             fatalError()
         }
     }
-    
+
     private func addFavorite(domain: FavoriteDomainModel) -> AnyPublisher<Bool, any Error> {
         return _localeDataSource.add(entity: _mapper.transformDomainToEntity(domain: domain))
             .eraseToAnyPublisher()
     }
-    
+
     private func deleteFavorite(domain: FavoriteDomainModel) -> AnyPublisher<Bool, any Error> {
         return _localeDataSource.delete(id: domain.id)
             .eraseToAnyPublisher()
     }
-    
+
     private func isFavoriteExist(domain: FavoriteDomainModel) -> AnyPublisher<Bool, any Error> {
         return _localeDataSource.isExist(id: domain.id)
             .eraseToAnyPublisher()
     }
-    
+
 }

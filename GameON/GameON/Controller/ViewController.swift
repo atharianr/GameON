@@ -12,19 +12,19 @@ import GameON_Core
 import Games
 
 class ViewController: UIViewController {
-    
+
     @IBOutlet private var gameTableView: UITableView!
-    
+
     @IBOutlet weak var searchBar: UISearchBar!
-    
+
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
+
     private var gameList: [GameDomainModel] = []
-    
+
     private var searchWorkItem: DispatchWorkItem?
-    
+
     private var cancellables: Set<AnyCancellable> = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         )
         getGameList()
     }
-    
+
     private func getGameList() {
         let gamesUseCase: Interactor<
             Any,
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
             >
         > = Injection.init().provideGames()
         let presenter = GetListPresenter(useCase: gamesUseCase)
-        
+
         // Observe gameList changes
         presenter.$list
             .sink { [weak self] games in
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
                 self?.gameTableView.reloadData()
             }
             .store(in: &cancellables)
-        
+
         // Observe loadingState changes
         presenter.$isLoading
             .sink { [weak self] isLoading in
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         // Observe errorMessage changes
         presenter.$errorMessage
             .sink { [weak self] errorMessage in
@@ -83,10 +83,10 @@ class ViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         presenter.getList(request: nil)
     }
-    
+
     private func getSearchGameList(query: String) {
         let gameSearchUseCase: Interactor<
             Any,
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
             >
         > = Injection.init().provideSearchGames(query: query)
         let presenter = GetListPresenter(useCase: gameSearchUseCase)
-        
+
         // Observe gameList changes
         presenter.$list
             .sink { [weak self] games in
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
                 self?.gameTableView.reloadData()
             }
             .store(in: &cancellables)
-        
+
         // Observe loadingState changes
         presenter.$isLoading
             .sink { [weak self] isLoading in
@@ -121,7 +121,7 @@ class ViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         // Observe errorMessage changes
         presenter.$errorMessage
             .sink { [weak self] errorMessage in
@@ -133,7 +133,7 @@ class ViewController: UIViewController {
                 }
             }
             .store(in: &cancellables)
-        
+
         presenter.getList(request: query)
     }
 }
@@ -145,7 +145,7 @@ extension ViewController: UITableViewDataSource {
     ) -> Int {
         gameList.count
     }
-    
+
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
@@ -159,15 +159,15 @@ extension ViewController: UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
+
     private func setupCellView(cell: GameTableViewCell, game: GameDomainModel) -> GameTableViewCell {
         cell.imageLoadingIndicator.isHidden = false
         cell.imageLoadingIndicator.startAnimating()
-        
+
         cell.titleLabel.text = game.title
         cell.ratingLabel.text = "\(game.rating)"
         cell.releaseDateLabel.text = game.releaseDate
-        
+
         cell.cardView.layer.cornerRadius = 16
         cell.cardView.layer.shadowColor = UIColor.black.cgColor
         cell.cardView.layer.shadowOpacity = 0.25
@@ -175,7 +175,7 @@ extension ViewController: UITableViewDataSource {
         cell.cardView.layer.shadowRadius = 4
         cell.cardView.layer.masksToBounds = false
         cell.cardView.layer.backgroundColor = UIColor.white.cgColor
-        
+
         cell.gameImage.layer.borderWidth = 0.5
         cell.gameImage.layer.masksToBounds = false
         cell.gameImage.layer.borderColor = UIColor.colorSecondary.cgColor
@@ -199,7 +199,7 @@ extension ViewController: UITableViewDelegate {
     ) {
         performSegue(withIdentifier: "moveToDetail", sender: gameList[indexPath.row])
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "moveToDetail" {
             if let detaiViewController = segue.destination as? DetailViewController {
@@ -212,13 +212,13 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchWorkItem?.cancel()
-        
+
         let workItem = DispatchWorkItem { [weak self] in
             self?.getSearchGameList(query: searchText)
         }
-        
+
         searchWorkItem = workItem
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: workItem)
     }
 }

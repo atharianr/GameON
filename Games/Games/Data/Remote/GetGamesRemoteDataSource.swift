@@ -10,21 +10,21 @@ import GameON_Core
 import Combine
 import Alamofire
 
-public struct GetGamesRemoteDataSource : DataSource {
-    
+public struct GetGamesRemoteDataSource: DataSource {
+
     public typealias Request = Any
-    
+
     public typealias Response = GameListResponse
-    
+
     private let _endpoint: String
-    
-    private let _params: [String : String]
-    
-    public init(endpoint: String, params: [String : String]) {
+
+    private let _params: [String: String]
+
+    public init(endpoint: String, params: [String: String]) {
         _endpoint = endpoint
         _params = params
     }
-    
+
     public func execute(request: Request?) -> AnyPublisher<GameListResponse, any Error> {
         return Future<GameListResponse, Error> { completion in
             if let url = URL(string: _endpoint) {
@@ -41,5 +41,5 @@ public struct GetGamesRemoteDataSource : DataSource {
             }
         }.eraseToAnyPublisher()
     }
-    
+
 }
