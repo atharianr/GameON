@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Foto_4x6_Putih_Jas.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Foto_4x6_Putih_Jas@2x.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Foto_4x6_Putih_Jas@3x.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

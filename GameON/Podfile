@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '16.0'
+ 
+use_frameworks!
+workspace 'GameON-Modularization'
+ 
+target 'GameON' do
+  # Pods for GameON
+end
+ 
+target 'Games' do
+  project '../Games/Games'
+end
+
+target 'GameDetail' do
+  project '../GameDetail/GameDetail'
+end
+
+target 'Favorite' do
+  project '../Favorite/Favorite'
+end
+
+target 'Profile' do
+  project '../Profile/Profile'
+end
