@@ -526,7 +526,7 @@
 			repositoryURL = "https://github.com/atharianr/GameON-Core";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				minimumVersion = 0.4.0;
 			};
 		};
 		7AA257C62CB52FCC00AD0DBD /* XCRemoteSwiftPackageReference "Alamofire" */ = {

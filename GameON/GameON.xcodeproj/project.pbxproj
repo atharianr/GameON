@@ -665,7 +665,7 @@
 			repositoryURL = "https://github.com/atharianr/GameON-Core";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
+				minimumVersion = 0.4.0;
 			};
 		};
 		7AA258332CB5BC6E00AD0DBD /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
