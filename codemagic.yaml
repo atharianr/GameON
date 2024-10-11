@@ -1,9 +1,10 @@
-trigger:
+triggering:
   events:
     - push
   branch_patterns:
     - pattern: "master"
       include: true
+      source: false
 
 workflows:
   ios-project-debug:
