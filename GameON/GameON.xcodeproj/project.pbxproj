@@ -72,7 +72,6 @@
 		7A5DF39E2CB5065D00AC1D67 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		7A5DF3A52CB5086A00AC1D67 /* GameON-Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "GameON-Core"; path = "../../GameON-Core"; sourceTree = "<group>"; };
 		7AA2572F2CB513C500AD0DBD /* GameON-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameON-Info.plist"; sourceTree = "<group>"; };
-		7AA257312CB5145600AD0DBD /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7AA257322CB5156A00AD0DBD /* GameTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTableViewCell.xib; sourceTree = "<group>"; };
 		7AA257332CB5156A00AD0DBD /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7AA257372CB515AD00AD0DBD /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
@@ -93,7 +92,6 @@
 		7AA258242CB5AFD700AD0DBD /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		7AA2582B2CB5B14200AD0DBD /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		7AA258302CB5B7EA00AD0DBD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7AA258352CB5C3CF00AD0DBD /* GameONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameONTests.swift; sourceTree = "<group>"; };
 		C40379743584762CED20D834 /* Pods-GameON.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GameON.debug.xcconfig"; path = "Target Support Files/Pods-GameON/Pods-GameON.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,10 +123,8 @@
 		7A5DF2C22CB4362200AC1D67 = {
 			isa = PBXGroup;
 			children = (
-				7AA257312CB5145600AD0DBD /* .gitignore */,
 				7A61FDD17576CD43703CD115 /* Frameworks */,
 				7A5DF31C2CB450EB00AC1D67 /* GameON */,
-				7AA258362CB5C3CF00AD0DBD /* GameONTests */,
 				7D0329F6589183365A203A81 /* Pods */,
 				7A5DF2CC2CB4362200AC1D67 /* Products */,
 			);
@@ -199,14 +195,6 @@
 				7AA2582B2CB5B14200AD0DBD /* UITextField+Ext.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		7AA258362CB5C3CF00AD0DBD /* GameONTests */ = {
-			isa = PBXGroup;
-			children = (
-				7AA258352CB5C3CF00AD0DBD /* GameONTests.swift */,
-			);
-			path = GameONTests;
 			sourceTree = "<group>";
 		};
 		7AA5D3C32CB50AA100F8DFAB /* Controller */ = {
