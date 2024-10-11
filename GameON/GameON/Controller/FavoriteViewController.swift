@@ -56,19 +56,17 @@ class FavoriteViewController: UIViewController {
                 self?.gameTableView.isHidden = !hasFavorites
                 self?.emptyStateStackView.isHidden = hasFavorites
 
-                if hasFavorites {
-                    let gameList = favoriteGames.map { game in
-                        GameDomainModel(
-                            id: game.id,
-                            title: game.title,
-                            rating: game.rating,
-                            releaseDate: game.releaseDate,
-                            imageUrl: game.imageUrl
-                        )
-                    }
-                    self?.gameList = gameList
-                    self?.gameTableView.reloadData()
+                let gameList = favoriteGames.map { game in
+                    GameDomainModel(
+                        id: game.id,
+                        title: game.title,
+                        rating: game.rating,
+                        releaseDate: game.releaseDate,
+                        imageUrl: game.imageUrl
+                    )
                 }
+                self?.gameList = gameList
+                self?.gameTableView.reloadData()
             }
             .store(in: &cancellables)
 
