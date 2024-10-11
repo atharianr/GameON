@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7A5DF32B2CB450F600AC1D67 /* Games.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A5DF3282CB450F600AC1D67 /* Games.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A5DF32C2CB450F600AC1D67 /* Games.docc in Sources */ = {isa = PBXBuildFile; fileRef = 7A5DF3292CB450F600AC1D67 /* Games.docc */; };
 		7A5DF3772CB5019C00AC1D67 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A5DF3762CB5019C00AC1D67 /* RealmSwift */; };
 		7A5DF3812CB5046E00AC1D67 /* GameON-Core in Frameworks */ = {isa = PBXBuildFile; productRef = 7A5DF3802CB5046E00AC1D67 /* GameON-Core */; };
@@ -38,7 +37,6 @@
 /* Begin PBXFileReference section */
 		22209B7C78D973618C7DD023 /* Pods-Games.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Games.release.xcconfig"; path = "Target Support Files/Pods-Games/Pods-Games.release.xcconfig"; sourceTree = "<group>"; };
 		7A5DF2F62CB4507800AC1D67 /* Games.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Games.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A5DF3282CB450F600AC1D67 /* Games.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Games.h; sourceTree = "<group>"; };
 		7A5DF3292CB450F600AC1D67 /* Games.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Games.docc; sourceTree = "<group>"; };
 		7A5DF3822CB5049300AC1D67 /* GameModuleEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModuleEntity.swift; sourceTree = "<group>"; };
 		7A5DF3842CB5049300AC1D67 /* GetGamesLocaleDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGamesLocaleDataSource.swift; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 			children = (
 				7A5DF38B2CB5049300AC1D67 /* Data */,
 				7A5DF38E2CB5049300AC1D67 /* Domain */,
-				7A5DF3282CB450F600AC1D67 /* Games.h */,
 				7A5DF3292CB450F600AC1D67 /* Games.docc */,
 				7A5DF3902CB5049300AC1D67 /* Utils */,
 			);
@@ -189,7 +186,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A5DF32B2CB450F600AC1D67 /* Games.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
