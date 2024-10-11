@@ -1,11 +1,3 @@
-triggering:
-  events:
-    - push
-  branch_patterns:
-    - pattern: "master"
-      include: true
-      source: false
-
 workflows:
   ios-project-debug:
     name: iOS debug
@@ -28,3 +20,9 @@ workflows:
       email:
         recipients:
           - atharianrahmadani@gmail.com
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "master"
+          include: true
