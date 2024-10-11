@@ -20,3 +20,9 @@ workflows:
       email:
         recipients:
           - atharianrahmadani@gmail.com
+    trigger:
+      events:
+        - push
+      branch_patterns:
+        - pattern: "master"
+          include: true
